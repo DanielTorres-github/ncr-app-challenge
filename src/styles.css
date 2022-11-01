@@ -1,0 +1,29 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.box {
+  width: 1024px;
+  height: 768px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+}
+
+.banner {
+  width: 100%;
+  height: 10vh;
+  background-color: rgb(50, 205, 50);
+}
+
+.accountContainer {
+  padding: 25px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.accountBox {
+  background-color: rgb(50, 205, 50);
+}
