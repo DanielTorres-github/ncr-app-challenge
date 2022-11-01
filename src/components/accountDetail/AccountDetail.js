@@ -1,1 +1,7 @@
-export default function AccountDetail() {}
+export default function AccountDetail() {
+  return (
+    <>
+      <div></div>
+    </>
+  );
+}
