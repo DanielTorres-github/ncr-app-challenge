@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function AccountList() {
   const url = "https://api.npoint.io/97d89162575a9d816661";
@@ -20,7 +21,6 @@ export default function AccountList() {
   function isLastPage() {
     return Math.floor(accounts.length / 5) === page;
   }
-
   //getAccounts() muestra la cantidad de cuentas que se especifique en la condicion de pageSize
   // 5 para el caso de la primer y ultima pagina y  muestra 4 para las paginas intermedias
   function getAccounts() {
@@ -61,7 +61,7 @@ export default function AccountList() {
 
   return (
     <>
-      <h4>Consulta de saldo</h4>
+      <h4>Consulta saldo</h4>
       <h1>Seleccionar cuenta a consultar</h1>
       <div className="accountContainer">
         {!isFirstPage() && (
@@ -71,12 +71,12 @@ export default function AccountList() {
         )}
         {getAccounts().map((e, i) => (
           <div key={i} className="accountBox">
-            <a>
+            <Link to={`/detail/${e.n}`}>
               <p>
                 {e.tipo_letras === "CC" ? "Cuenta Corriente" : "Caja De Ahorro"}
               </p>
               <p>{e.n}</p>
-            </a>
+            </Link>
           </div>
         ))}
         {!isLastPage() && (
