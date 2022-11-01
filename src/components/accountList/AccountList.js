@@ -21,9 +21,15 @@ export default function AccountList() {
     return Math.floor(accounts.length / 5) === page;
   }
 
+  //getAccounts() muestra la cantidad de cuentas que se especifique en la condicion de pageSize
+  // 5 para el caso de la primer y ultima pagina y  muestra 4 para las paginas intermedias
   function getAccounts() {
     const pageSize = isFirstPage() || isLastPage() ? 5 : 4;
-    return accounts.slice(page * pageSize, page * pageSize + pageSize);
+    const sizeException = isFirstPage() || isLastPage() ? 0 : 1;
+    return accounts.slice(
+      page * pageSize + sizeException,
+      page * pageSize + pageSize + sizeException
+    );
   }
 
   useEffect(() => {
@@ -55,7 +61,7 @@ export default function AccountList() {
 
   return (
     <>
-      <h4>Consulta saldo</h4>
+      <h4>Consulta de saldo</h4>
       <h1>Seleccionar cuenta a consultar</h1>
       <div className="accountContainer">
         {!isFirstPage() && (
