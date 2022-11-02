@@ -26,4 +26,11 @@
 
 .accountBox {
   background-color: rgb(50, 205, 50);
+  border-radius: 15px;
+  box-shadow: 1px 1px 1px black;
+  border: 0px;
+}
+.accountBox a {
+  color: white;
+  text-decoration: none;
 }

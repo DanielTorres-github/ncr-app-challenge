@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ValidAccount from "../../helpers/ValidAccount";
 
 export default function AccountList() {
   const url = "https://api.npoint.io/97d89162575a9d816661";
@@ -36,28 +37,9 @@ export default function AccountList() {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        setAccounts(
-          data.cuentas.filter(
-            (e) =>
-              validAccountCurrency(e) &&
-              validAccountNumber(e) &&
-              validAccountType(e)
-          )
-        );
+        setAccounts(data.cuentas.filter((e) => ValidAccount(e)));
       });
   }, []);
-  // console.log(accounts);
-
-  function validAccountType(e) {
-    return e.tipo_letras === "CC" || e.tipo_letras === "CA";
-  }
-
-  function validAccountNumber(e) {
-    return e.n.trim();
-  }
-  function validAccountCurrency(e) {
-    return e.moneda === "$" || e.moneda === "u$s";
-  }
 
   return (
     <>

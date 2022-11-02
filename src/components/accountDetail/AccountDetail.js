@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import ValidAccount from "../../helpers/ValidAccount";
 
 export default function AccountDetail() {
   const { id } = useParams();
@@ -12,27 +13,11 @@ export default function AccountDetail() {
       .then((data) => {
         setAccount(
           data.cuentas
-            .filter(
-              (e) =>
-                validAccountCurrency(e) &&
-                validAccountNumber(e) &&
-                validAccountType(e)
-            )
+            .filter((e) => ValidAccount(e))
             .find((element) => element.n === id)
         );
       });
   }, []);
-
-  function validAccountType(e) {
-    return e.tipo_letras === "CC" || e.tipo_letras === "CA";
-  }
-
-  function validAccountNumber(e) {
-    return e.n.trim();
-  }
-  function validAccountCurrency(e) {
-    return e.moneda === "$" || e.moneda === "u$s";
-  }
 
   return (
     <div>
