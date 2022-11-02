@@ -3,7 +3,7 @@ export function validAccountType(e) {
 }
 
 export function validAccountNumber(e) {
-  return e.n.trim();
+  return Boolean(e.n.trim());
 }
 export function validAccountCurrency(e) {
   return e.moneda === "$" || e.moneda === "u$s";
